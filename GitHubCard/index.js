@@ -26,7 +26,6 @@ axios.get("http://api.github.com/users/allyjay317")
 */
   
   cardList.append(cardMaker(myGitHub));
-
   
 })
 
@@ -53,8 +52,10 @@ const followersArray = ["tetondan",
       .then(response =>{
         cardList.append(cardMaker(response.data));
 
-        /*think this gets too many responses because github stops allowing the gets and gives errors on the GET requests
-        probably to stop ddos attacks, it also basically stopped me from testing the cards...
+        /*think this gets too many responses because github stops allowing the gets and gives CORSerrors on the GET
+        requests. probably to stop ddos attacks, it also basically stopped me from testing the cards even with a CORS
+        unblocker, now I have to wait an hour for my ratelimit to reset :/
+
         axios.get(`http://api.github.com/users/${user}/followers`)
           .then(response =>{
               response.data.forEach(follower =>{
@@ -108,6 +109,7 @@ const cardMaker = function(user){
   let cardLinkA = document.createElement("a")
    cardLinkA.href=user.html_url
    cardLinkA.textContent = user.html_url
+  let cardCalendar = document.createElement("div");
         
   let cardFollowers = document.createElement("p")
   cardFollowers.textContent = `Followers: ${user.followers}`
@@ -126,7 +128,12 @@ const cardMaker = function(user){
   cardInfo.append(cardFollowers);
   cardInfo.append(cardFollowees);
   cardInfo.append(cardBio);
+  cardInfo.append(cardCalendar)
+  GitHubCalendar(cardCalendar, user.login, {responsive: true});
 
+  cardImg.addEventListener("click", (event)=>{
+    card.classList.toggle("card-show");
+  })
   return card;
 }
 
