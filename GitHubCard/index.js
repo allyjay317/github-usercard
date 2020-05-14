@@ -98,12 +98,12 @@ const cardMaker = function(user){
    cardInfo.classList="card-info"
   let cardRName = document.createElement("h3")
    cardRName.classList.add("name")
-   cardRName.textContent = user.name
+   cardRName.textContent = user.name == null ? "none" : user.name
   let cardUName = document.createElement("p")
    cardUName.classList="username"
    cardUName.textContent = user.login
   let cardLocation = document.createElement("p")
-  cardLocation.textContent = `Location: ${user.location}`
+  cardLocation.textContent = `Location: ${user.location == null ? "none" : user.location}`
   let cardLink = document.createElement("p")
   cardLink.textContent = "Profile:"
   let cardLinkA = document.createElement("a")
@@ -116,7 +116,7 @@ const cardMaker = function(user){
   let cardFollowees = document.createElement("p")
   cardFollowees.textContent = `Following: ${user.following}`
   let cardBio = document.createElement("p")
-  cardBio.textContent = `Bio: ${user.bio}`
+  cardBio.textContent = `Bio: ${user.bio == null ? "No Bio Written" : user.bio}`
 
   card.append(cardImg);
   card.append(cardInfo);
