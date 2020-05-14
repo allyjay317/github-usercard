@@ -89,16 +89,29 @@ body {
 
 .cards {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card {
-  width: 100%;
+  width: 190px;
+  max-height: 190px;
   padding: 20px;
   display: flex;
   border-radius: 5px;
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
   margin-bottom: 30px;
+  overflow: hidden;
+  transition: width 1s, max-height 1s, order 3s;
+  
+}
+.card-show{
+  width: 100%;
+  max-height: 500px;
+  order: -1;
+  transition: width 1s, max-height 1s;
 }
 
 .card img {
